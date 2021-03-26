@@ -50,6 +50,7 @@ df$kmeans_cluster <- df_kmeans$cluster
 head(df, 3)
 
 # K medoids
+library(cluster)
 set.seed(2020)
 fviz_nbclust(df_train_scale, pam, method = "wss", k.max = 15) +
     theme_minimal() +
