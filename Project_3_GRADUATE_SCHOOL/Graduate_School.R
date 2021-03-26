@@ -110,7 +110,7 @@ plot(svm_poly_fit)
 svm_poly_pred <- predict(svm_poly_fit, newdata = test)
 postResample(pred = svm_poly_pred, obs = test$Chance.of.Admit)
 
-# Best Model in Using Regression method: Elastictnet 
+# Best Model: Elastictnet 
 
 # Using Classification Method
 par(mfrow = c(1, 2), mar = c(5.1 , 4.1, 4.1, 2.1))
@@ -134,3 +134,99 @@ train_ratio <- 0.7
 total_df_2 <- sort(sample(nrow(new_df_2), nrow(new_df_2)*train_ratio))
 train_2 <- new_df_2[total_df_2, ]
 test_2 <- new_df_2[-total_df_2, ]                   
+
+# K-Nearest Neighbor
+ctrl <- trainControl(method = "repeatedcv", repeats = 5)
+customGrid <- expand.grid(k = 1:20)    
+knn_fit_2 <- train(Chance.of.Admit ~.,
+                  data = train_2,
+                  method = "knn",
+                  trControl = ctrl,
+                  preProcess = c("center", "scale"),
+                  tuneGrid = customGrid,
+                  metric = "Accuracy")
+knn_fit_2
+plot(knn_fit_2)
+
+knn_pred_2 <- predict(knn_fit_2, newdata = test_2)
+confusionMatrix(knn_pred_2, test_2$Chance.of.Admit)
+
+# Logit Boost
+logit_boost_fit_2 <- train(Chance.of.Admit ~.,
+                           data = train_2,
+                           method = "LogitBoost",
+                           trControl = ctrl,
+                           preProcess = c("center", "scale"),
+                           metric = "Accuracy")
+logit_boost_fit_2
+plot(logit_boost_fit_2)
+
+logit_boost_pred <- predict(logit_boost_fit_2, newdata = test_2)
+confusionMatrix(logit_boost_pred, test_2$Chance.of.Admit)
+
+# Penalized Logistic Regression
+logit_plr_fit_2 <- train(Chance.of.Admit ~.,
+                         data = train_2,
+                         method = "plr",
+                         trControl = ctrl,
+                         preProcess = c("center", "scale"),
+                         metric = "Accuracy")
+logit_plr_fit_2
+plot(logit_plr_fit_2)
+
+logit_plr_pred <- predict(logit_plr_fit_2, newdata = test_2)
+confusionMatrix(logit_plr_pred, test_2$Chance.of.Admit)
+
+# naive bayes
+nb_fit_2 <- train(Chance.of.Admit ~.,
+                  data = train_2,
+                  method = "naive_bayes",
+                  trControl = ctrl,
+                  preProcess = c("center", "scale"),
+                  metric = "Accuracy")
+nb_fit_2
+plot(nb_fit_2)
+
+nb_fit_pred <- predict(nb_fit_2, newdata = test_2)
+confusionMatrix(nb_fit_pred, test_2$Chance.of.Admit)
+
+# Random Forest
+rf_fit_2 <- train(Chance.of.Admit ~.,
+                  data = train_2,
+                  method = "rf",
+                  trControl = ctrl,
+                  preProcess = c("center", "scale"),
+                  metric = "Accuracy")
+rf_fit_2
+plot(rf_fit_2)
+
+rf_fit_pred <- predict(rf_fit_2, newdata = test_2)
+confusionMatrix(rf_fit_pred, test_2$Chance.of.Admit)
+
+
+# SVM
+svm_linear_fit_2 <- train(Chance.of.Admit ~.,
+                          data = train_2,
+                          method = "svmLinear",
+                          trControl = ctrl,
+                          preProcess = c("center", "scale"),
+                          metric = "Accuracy")
+svm_linear_fit_2
+
+svm_linear_pred_2 <- predict(svm_linear_fit_2, newdata = test_2)
+confusionMatrix(svm_linear_pred_2, test_2$Chance.of.Admit)
+
+# Kernalized SVM
+svm_poly_fit_2 <- train(Chance.of.Admit ~ .,
+                        data = train_2,
+                        method = "svmPoly",
+                        trControl = ctrl,
+                        preProcess = c("center", "scale"),
+                        metric = "Accuracy")
+svm_poly_fit_2
+plot(svm_poly_fit_2)
+
+svm_poly_pred_2 <- predict(svm_poly_fit_2, newdata = test_2)
+confusionMatrix(svm_poly_pred_2, test_2$Chance.of.Admit)
+
+# Best Model: Penealized Logistic Regression
