@@ -16,25 +16,25 @@ unique(df$Chance.of.Admit)
 max(df$Chance.of.Admit)
 min(df$Chance.of.Admit)
 
-# 시각화(histogram)
+# ?챨?화(histogram)
 par(mfrow = c(3, 2), mar = c(5.1, 4.1, 4.1, 4.2))
-hist(df$GRE.Score, main = "GRE 점수 히스토그램", xlab = "GRE 점수", col = "skyblue")
-hist(df$TOEFL.Score, main = "TOEFL 점수 히스토그램", xlab = "TOEFL 점수", col = "green")
-hist(df$SOP, main = "SOP 점수 히스토그램", xlab = "SOP 점수", col = "orange")
-hist(df$CGPA, main = "CGPA 점수 히스토그램", xlab = "CGPA 점수", col = "darkmagenta")
-hist(df$LOR, main = "LOR 점수 히스토그램", xlab = "LOR 점수", col = "yellow")
-hist(df$Chance.of.Admit, main = "CoA 히스토그램", xlab = "CoA", col = "red")
+hist(df$GRE.Score, main = "GRE 점?? ???????瀏?", xlab = "GRE 점??", col = "skyblue")
+hist(df$TOEFL.Score, main = "TOEFL 점?? ???????瀏?", xlab = "TOEFL 점??", col = "green")
+hist(df$SOP, main = "SOP 점?? ???????瀏?", xlab = "SOP 점??", col = "orange")
+hist(df$CGPA, main = "CGPA 점?? ???????瀏?", xlab = "CGPA 점??", col = "darkmagenta")
+hist(df$LOR, main = "LOR 점?? ???????瀏?", xlab = "LOR 점??", col = "yellow")
+hist(df$Chance.of.Admit, main = "CoA ???????瀏?", xlab = "CoA", col = "red")
 
-# 시각화(boxplot)
+# ?챨?화(boxplot)
 par(mfrow = c(2, 3), mar = c(2, 4.1, 4.1, 2.1))
-boxplot(df$GRE.Score, main = "GRE 점수 히스토그램", xlab = "GRE 점수", col = "skyblue")
-boxplot(df$TOEFL.Score, main = "TOEFL 점수 히스토그램", xlab = "TOEFL 점수", col = "green")
-boxplot(df$SOP, main = "SOP 점수 히스토그램", xlab = "SOP 점수", col = "orange")
-boxplot(df$CGPA, main = "CGPA 점수 히스토그램", xlab = "CGPA 점수", col = "darkmagenta")
-boxplot(df$LOR, main = "LOR 점수 히스토그램", xlab = "LOR 점수", col = "yellow")
-boxplot(df$Chance.of.Admit, main = "CoA 히스토그램", xlab = "CoA", col = "red")
+boxplot(df$GRE.Score, main = "GRE 점?? ???????瀏?", xlab = "GRE 점??", col = "skyblue")
+boxplot(df$TOEFL.Score, main = "TOEFL 점?? ???????瀏?", xlab = "TOEFL 점??", col = "green")
+boxplot(df$SOP, main = "SOP 점?? ???????瀏?", xlab = "SOP 점??", col = "orange")
+boxplot(df$CGPA, main = "CGPA 점?? ???????瀏?", xlab = "CGPA 점??", col = "darkmagenta")
+boxplot(df$LOR, main = "LOR 점?? ???????瀏?", xlab = "LOR 점??", col = "yellow")
+boxplot(df$Chance.of.Admit, main = "CoA ???????瀏?", xlab = "CoA", col = "red")
 
-# 시각화(pie chart)
+# ?챨?화(pie chart)
 par(mfrow = c(1, 2), mar = c(1, 1, 1, 1))
 pie(u_rating_table, main = " Univ.Rating", radius = 1)
 pie(research_table, main = "Research_EXP.", radius = 1)
@@ -99,7 +99,7 @@ postResample(pred = svm_linear_pred, obs = test$Chance.of.Admit)
 
 # Kernalized SVM
 svm_poly_fit <- train(Chance.of.Admit ~.,
-                      data = train,
+                      data eln,
                       method = "svmPoly",
                       trControl = ctrl,
                       preProcess = c("center", "scale"),
@@ -114,8 +114,8 @@ postResample(pred = svm_poly_pred, obs = test$Chance.of.Admit)
 
 # Using Classification Method
 par(mfrow = c(1, 2), mar = c(5.1 , 4.1, 4.1, 2.1))
-hist(df$Chance.of.Admit, main = "대학원 합격 확률", xlab = "대학원 합격 확률", col = "red")
-boxplot(df$Chance.of.Admit, main = "대학원 합격 확률", xlab = "대학원 합격 확률", col = "red")
+hist(df$Chance.of.Admit, main = "???極? ?卵? 확??", xlab = "???極? ?卵? 확??", col = "red")
+boxplot(df$Chance.of.Admit, main = "???極? ?卵? 확??", xlab = "???極? ?卵? 확??", col = "red")
 
 # > Median: Admit, < Media: Reject
 df_2 <- df
@@ -218,7 +218,7 @@ confusionMatrix(svm_linear_pred_2, test_2$Chance.of.Admit)
 
 # Kernalized SVM
 svm_poly_fit_2 <- train(Chance.of.Admit ~ .,
-                        data = train_2,
+                        ea train_2,
                         method = "svmPoly",
                         trControl = ctrl,
                         preProcess = c("center", "scale"),
